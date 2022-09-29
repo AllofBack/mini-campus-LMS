@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입</title>
+</head>
+<body>
+<h1>회원 가입</h1>
+
+<!-- 아이디(이메일), 이름, 전화번호, 비밀번호 -->
+
+<form method="post">
+    <div>
+        아이디 : <input type="email" name="userId" placeholder=" ex) abc@gmail.com" required/>
+    </div>
+    <div>
+        이름 : <input type="text" name="userName" required/>
+    </div>
+    <div>
+        비밀번호 : <input type="password" name="password" required/>
+    </div>
+    <div>
+        비밀번호 확인 : <input type="password" name="rePassword" required/>
+    </div>
+    <div>
+        전화번호 : <input type="tel" name="phone" required/>
+    </div>
+
+    <div>
+        <button>회원 가입 하기</button>
+    </div>
+</form>
+
+</body>
+</html>
