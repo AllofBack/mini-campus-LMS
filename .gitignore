@@ -5,6 +5,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+src/main/java/com/example/minicampus/component/SMTP.txt
 
 ### STS ###
 .apt_generated
