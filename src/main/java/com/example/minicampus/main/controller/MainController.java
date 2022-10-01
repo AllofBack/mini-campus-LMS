@@ -1,4 +1,4 @@
-package com.example.minicampus;
+package com.example.minicampus.main.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
