@@ -30,4 +30,7 @@ public class Member { // 테이블 의미
     
     private String resetPasswordKey;
     private LocalDateTime resetPasswordLimitDt; // 비민번호 변경 유효 기간
+
+    // 관리자 여부 확인
+    private boolean adminYn;
 }
