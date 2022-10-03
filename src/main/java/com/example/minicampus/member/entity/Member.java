@@ -27,4 +27,7 @@ public class Member { // 테이블 의미
     private boolean emailAuthYn;
     private LocalDateTime emailAuthDt;
     private String emailAuthKey; // 회원가입할 때 만들어준 인증키
+    
+    private String resetPasswordKey;
+    private LocalDateTime resetPasswordLimitDt; // 비민번호 변경 유효 기간
 }
