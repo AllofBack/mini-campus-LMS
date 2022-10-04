@@ -1,8 +1,13 @@
 package com.example.minicampus.member.service;
 
+import com.example.minicampus.admin.dto.MemberDto;
+import com.example.minicampus.admin.model.MemberParam;
+import com.example.minicampus.member.entity.Member;
 import com.example.minicampus.member.model.MemberInput;
 import com.example.minicampus.member.model.ResetPasswordInput;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import java.util.List;
 
 public interface MemberService extends UserDetailsService {
 
@@ -27,4 +32,9 @@ public interface MemberService extends UserDetailsService {
      * 입력받은 uuid 값이 유효한지 확인
      */
     boolean checkResetPassword(String uuid);
+
+    /***
+     * 회원 목록 리턴(관리자에서만 사용 가능)
+     */
+    List<MemberDto> list(MemberParam parameter);
 }
