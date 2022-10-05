@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable(); // 로그인과 같은 기능에서 정보가 내 페이지에서 만들어진게 맞는지 확인하는 기술 CSRF (잠시 DISABLE 처리)
+        http.headers().frameOptions().sameOrigin(); // frameOption deny 문제 해결
 
         // 페이지 권한 설정 - 주소 매칭 (아래 주소에 대해 접근 가능하게 처리)
         http.authorizeRequests()

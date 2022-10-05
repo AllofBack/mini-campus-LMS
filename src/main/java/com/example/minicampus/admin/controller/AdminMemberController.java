@@ -4,6 +4,7 @@ import com.example.minicampus.admin.dto.MemberDto;
 import com.example.minicampus.admin.model.MemberParam;
 import com.example.minicampus.admin.model.MemberInput;
 import com.example.minicampus.admin.util.PageUtil;
+import com.example.minicampus.course.controller.BaseController;
 import com.example.minicampus.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class AdminMemberController {
+public class AdminMemberController extends BaseController {
 
     private final MemberService memberService;
 
@@ -31,12 +32,13 @@ public class AdminMemberController {
         if (members != null && members.size() > 0) {
             totalCount = members.get(0).getTotalCount();
         }
-        String queryString = parameter.getQueryString();
 
-        PageUtil pageUtil = new PageUtil(totalCount, parameter.getPageSize(), parameter.getPageIndex(), queryString);
+        String queryString = parameter.getQueryString();
+        String pagerHtml = getPagerHtml(totalCount, parameter.getPageSize(), parameter.getPageIndex(), queryString);
+
         model.addAttribute("list", members);
         model.addAttribute("totalCount", totalCount);
-        model.addAttribute("pager", pageUtil.pager());
+        model.addAttribute("pager", pagerHtml);
 
         return "/admin/member/list";
     }
