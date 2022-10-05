@@ -1,4 +1,4 @@
-package com.example.minicampus.admin;
+package com.example.minicampus.admin.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
