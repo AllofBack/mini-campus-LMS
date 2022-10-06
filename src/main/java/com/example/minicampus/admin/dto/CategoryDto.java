@@ -21,6 +21,9 @@ public class CategoryDto {
     int sortValue;
     boolean usingYn;
 
+    // 추가 사항 - 카테고리 내 강의 수
+    int courseCount;
+
     public static List<CategoryDto> of(List<Category> categories) {
         if (categories != null) {
             List<CategoryDto> categoryList = new ArrayList<>();

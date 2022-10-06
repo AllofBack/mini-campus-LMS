@@ -2,10 +2,14 @@ package com.example.minicampus.course.service;
 
 import com.example.minicampus.course.dto.CourseDto;
 import com.example.minicampus.course.entity.Course;
+import com.example.minicampus.course.entity.TakeCourse;
 import com.example.minicampus.course.mapper.CourseMapper;
 import com.example.minicampus.course.model.CourseInput;
 import com.example.minicampus.course.model.CourseParam;
+import com.example.minicampus.course.model.ServiceResult;
+import com.example.minicampus.course.model.TakeCourseInput;
 import com.example.minicampus.course.repository.CourseRepository;
+import com.example.minicampus.course.repository.TakeCourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -13,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +26,7 @@ import java.util.Optional;
 public class CourseServiceImpl implements CourseService {
     
     private final CourseRepository courseRepository;
+    private final TakeCourseRepository takeCourseRepository;
     private final CourseMapper courseMapper;
     
     
@@ -126,5 +132,79 @@ public class CourseServiceImpl implements CourseService {
         
         return true;
     }
-    
+
+    @Override
+    public List<CourseDto> frontList(CourseParam parameter) {
+
+        if (parameter.getCategoryId() < 1) { // 전체 가져오기
+            List<Course> courseList = courseRepository.findAll();
+            return CourseDto.of(courseList);
+        }
+
+        Optional<List<Course>> optionalCourses = courseRepository.findByCategoryId(parameter.getCategoryId());
+        if (optionalCourses.isPresent()) {
+            return CourseDto.of(optionalCourses.get());
+        }
+        return null;
+    }
+
+    @Override
+    public CourseDto frontDetail(long id) {
+
+        Optional<Course> optionalCourse = courseRepository.findById(id);
+        if (optionalCourse.isPresent()) {
+            return CourseDto.of(optionalCourse.get());
+        }
+        return null;
+    }
+
+    /**
+     * 수강신청
+     */
+    @Override
+    public ServiceResult req(TakeCourseInput parameter) {
+
+        ServiceResult result = new ServiceResult();
+
+        Optional<Course> optionalCourse = courseRepository.findById(parameter.getCourseId());
+        if (!optionalCourse.isPresent()) {
+            result.setResult(false);
+            result.setMessage("강좌 정보가 존재하지 않습니다.");
+            return result;
+        }
+
+        Course course = optionalCourse.get();
+
+        //이미 신청정보가 있는지 확인
+        String[] statusList = {TakeCourse.STATUS_REQ, TakeCourse.STATUS_COMPLETE};
+        long count = takeCourseRepository.countByCourseIdAndUserIdAndStatusIn(course.getId(), parameter.getUserId(), Arrays.asList(statusList));
+
+        if (count > 0) {
+            result.setResult(false);
+            result.setMessage("이미 신청한 강좌 정보가 존재합니다.");
+            return result;
+        }
+
+        TakeCourse takeCourse = TakeCourse.builder()
+                .courseId(course.getId())
+                .userId(parameter.getUserId())
+                .payPrice(course.getSalePrice())
+                .regDt(LocalDateTime.now())
+                .status(TakeCourse.STATUS_REQ)
+                .build();
+        takeCourseRepository.save(takeCourse);
+
+        result.setResult(true);
+        result.setMessage("");
+        return result;
+    }
+
+    @Override
+    public List<CourseDto> listAll() {
+
+        List<Course> courseList = courseRepository.findAll();
+
+        return CourseDto.of(courseList);
+    }
+
 }

@@ -8,13 +8,15 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 public class CourseDto {
-    
+
     Long id;
     long categoryId;
     String imagePath;
@@ -24,9 +26,12 @@ public class CourseDto {
     String contents;
     long price;
     long salePrice;
-    LocalDate saleEndDt; // 일자만 필요함
+    LocalDate saleEndDt;
     LocalDateTime regDt;//등록일(추가날짜)
     LocalDateTime udtDt;//수정일(수정날짜)
+
+    String filename;
+    String urlFilename;
 
     //추가컬럼
     long totalCount;
@@ -46,6 +51,34 @@ public class CourseDto {
                 .saleEndDt(course.getSaleEndDt())
                 .regDt(course.getRegDt())
                 .udtDt(course.getUdtDt())
+                .filename(course.getFilename())
+                .urlFilename(course.getUrlFilename())
                 .build();
     }
+
+    public static List<CourseDto> of(List<Course> courses) {
+
+        if (courses == null) {
+            return null;
+        }
+
+        List<CourseDto> courseList = new ArrayList<>();
+        for(Course x : courses) {
+            courseList.add(CourseDto.of(x));
+        }
+        return courseList;
+
+        /*
+        if (courses != null) {
+            List<CourseDto> courseList = new ArrayList<>();
+            for(Course x : courses) {
+                courseList.add(CourseDto.of(x));
+            }
+            return courseList;
+        }
+        return null;
+        */
+
+    }
+
 }

@@ -18,22 +18,26 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    
+
     long categoryId;
-    
+
     String imagePath;
     String keyword;
     String subject;
-    
+
     @Column(length = 1000)
     String summary;
-    
-    @Lob // 많은 데이터 저장
+
+    @Lob
     String contents;
     long price;
-    long salePrice; // 현재판매가
-    LocalDate saleEndDt; // 할인 기간
-    
+    long salePrice;
+    LocalDate saleEndDt;
+
     LocalDateTime regDt;//등록일(추가날짜)
     LocalDateTime udtDt;//수정일(수정날짜)
+
+    String filename;
+    String urlFilename;
+
 }

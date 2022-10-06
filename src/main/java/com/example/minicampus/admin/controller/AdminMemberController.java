@@ -3,7 +3,6 @@ package com.example.minicampus.admin.controller;
 import com.example.minicampus.admin.dto.MemberDto;
 import com.example.minicampus.admin.model.MemberParam;
 import com.example.minicampus.admin.model.MemberInput;
-import com.example.minicampus.admin.util.PageUtil;
 import com.example.minicampus.course.controller.BaseController;
 import com.example.minicampus.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +33,7 @@ public class AdminMemberController extends BaseController {
         }
 
         String queryString = parameter.getQueryString();
-        String pagerHtml = getPagerHtml(totalCount, parameter.getPageSize(), parameter.getPageIndex(), queryString);
+        String pagerHtml = getPaperHtml(totalCount, parameter.getPageSize(), parameter.getPageIndex(), queryString);
 
         model.addAttribute("list", members);
         model.addAttribute("totalCount", totalCount);
