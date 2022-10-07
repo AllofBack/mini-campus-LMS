@@ -18,22 +18,25 @@ import java.time.LocalDateTime;
 public class Member implements MemberCode{ // 테이블 의미
     @Id
     private String userId;
-
     private String userName;
     private String phone;
     private String password;
     private LocalDateTime regDt;
-    
+    private LocalDateTime udtDt;//회원정보 수정일
+
     private boolean emailAuthYn;
     private LocalDateTime emailAuthDt;
-    private String emailAuthKey; // 회원가입할 때 만들어준 인증키
-    
-    private String resetPasswordKey;
-    private LocalDateTime resetPasswordLimitDt; // 비민번호 변경 유효 기간
+    private String emailAuthKey;
 
-    // 관리자 여부 확인
+    private String resetPasswordKey;
+    private LocalDateTime resetPasswordLimitDt;
+
     private boolean adminYn;
 
-    // 회원 상태 - 이용가능 / 정지
-    private String userStatus;
+    private String userStatus;//이용가능한상태, 정지상태
+
+
+    private String zipcode;
+    private String addr;
+    private String addrDetail;
 }
