@@ -45,7 +45,7 @@ public class TakeCourseDto {
                 .build();
     }
 
-    public String getRegDtText() {
+    public String getRegDtText() { // 등록 날짜 형식 지정
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
         return regDt != null ? regDt.format(formatter) : "";
     

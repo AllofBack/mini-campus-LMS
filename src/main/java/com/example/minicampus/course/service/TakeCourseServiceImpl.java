@@ -21,9 +21,23 @@ public class TakeCourseServiceImpl implements TakeCourseService {
     private final TakeCourseRepository takeCourseRepository;
     private final TakeCourseMapper takeCourseMapper;
 
+
     @Override
     public List<TakeCourseDto> list(TakeCourseParam parameter) {
-        return null;
+
+        long totalCount = takeCourseMapper.selectListCount(parameter);
+
+        List<TakeCourseDto> list = takeCourseMapper.selectList(parameter);
+        if (!CollectionUtils.isEmpty(list)) {
+            int i = 0;
+            for (TakeCourseDto x : list) {
+                x.setTotalCount(totalCount);
+                x.setSeq(totalCount - parameter.getPageStart() - i);
+                i++;
+            }
+        }
+
+        return list;
     }
 
     @Override
@@ -46,7 +60,7 @@ public class TakeCourseServiceImpl implements TakeCourseService {
 
         TakeCourse takeCourse = optionalTakeCourse.get();
 
-        takeCourse.setStatus( status);
+        takeCourse.setStatus(status);
         takeCourseRepository.save(takeCourse);
 
         return new ServiceResult(true);

@@ -46,8 +46,6 @@ public class AdminTakeCourseController extends BaseController {
         List<CourseDto> courseList = courseService.listAll();
         model.addAttribute("courseList", courseList);
 
-
-
         return "admin/takecourse/list";
     }
 
