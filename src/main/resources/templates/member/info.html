@@ -68,7 +68,7 @@
                     </div>
                     <div>
                         <input type="text" id="addr" name="addr" th:value="${detail.addr}" readonly placeholder="주소 입력" />
-                        <input type="text" id="addrDetail" name="addrDetail" th:value="${detail.addrDetail}" placeholder="주소 상세내용 입력" />
+                        <input type="text" id="addrDetail" name="addrDetail" th:value="${detail.addrDetail}" placeholder="상세 주소 입력" />
                     </div>
                 </td>
             </tr>
@@ -76,13 +76,13 @@
             <tr>
                 <th>가입일</th>
                 <td>
-                    <p th:text="${detail.regDtText}">전화번호</p>
+                    <p th:text="${detail.regDtText}">가입일자</p>
                 </td>
             </tr>
             <tr>
                 <th>회원정보 수정일</th>
                 <td>
-                    <p th:text="${detail.udtDtText}">전화번호</p>
+                    <p th:text="${detail.udtDtText}">회원정보 수정일자</p>
                 </td>
             </tr>
             </tbody>

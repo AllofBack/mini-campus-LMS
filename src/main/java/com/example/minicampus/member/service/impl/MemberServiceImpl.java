@@ -265,7 +265,7 @@ public class MemberServiceImpl implements MemberService {
         member.setAddrDetail("");
         memberRepository.save(member);
 
-        return new ServiceResult();
+        return new ServiceResult(); // true
     }
 
     @Override

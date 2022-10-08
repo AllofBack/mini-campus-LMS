@@ -2,7 +2,7 @@ package com.example.minicampus.util;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
-public class PasswordUtils {
+public class PasswordUtils { // pw 같은지 비교
 
     public static boolean equals(String plaintext, String hashed) {
 
