@@ -38,6 +38,8 @@ public class TakeCourseServiceImpl implements TakeCourseService {
         }
 
         return list;
+
+
     }
 
     @Override
@@ -60,7 +62,7 @@ public class TakeCourseServiceImpl implements TakeCourseService {
 
         TakeCourse takeCourse = optionalTakeCourse.get();
 
-        takeCourse.setStatus(status);
+        takeCourse.setStatus( status);
         takeCourseRepository.save(takeCourse);
 
         return new ServiceResult(true);

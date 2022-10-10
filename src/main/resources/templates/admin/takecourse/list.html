@@ -5,7 +5,6 @@
     <title>관리자 화면 </title>
     <style>
         .list table {
-            text-align: center;
             width: 100%;
             border-collapse: collapse;
         }
@@ -68,8 +67,8 @@
             $('.row-buttons button').on('click', function() {
 
 
-                var status = $(this).val(); // 선택한 버튼 값
-                var id = $(this).closest('div').find('input[name=id]').val(); // 상위로 이동해서 찾기 + 번호
+                var status = $(this).val();
+                var id = $(this).closest('div').find('input[name=id]').val();
 
 
                 var msg = status == 'COMPLETE' ? '결제완료 처리 하시겠습니까?' : '수강취소 처리 하시겠습니까?';

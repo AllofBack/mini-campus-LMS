@@ -39,12 +39,12 @@ public class CourseServiceImpl implements CourseService {
         }
         return null;
     }
-    
+
     @Override
     public boolean add(CourseInput parameter) {
-        
+
         LocalDate saleEndDt = getLocalDate(parameter.getSaleEndDtText());
-        
+
         Course course = Course.builder()
                 .categoryId(parameter.getCategoryId())
                 .subject(parameter.getSubject())
@@ -55,24 +55,25 @@ public class CourseServiceImpl implements CourseService {
                 .salePrice(parameter.getSalePrice())
                 .saleEndDt(saleEndDt)
                 .regDt(LocalDateTime.now())
+                .filename(parameter.getFilename())
+                .urlFilename(parameter.getUrlFilename())
                 .build();
-
         courseRepository.save(course);
-        
+
         return true;
     }
-    
+
     @Override
     public boolean set(CourseInput parameter) {
-    
+
         LocalDate saleEndDt = getLocalDate(parameter.getSaleEndDtText());
-    
+
         Optional<Course> optionalCourse = courseRepository.findById(parameter.getId());
         if (!optionalCourse.isPresent()) {
             //수정할 데이터가 없음
             return false;
         }
-        
+
         Course course = optionalCourse.get();
         course.setCategoryId(parameter.getCategoryId());
         course.setSubject(parameter.getSubject());
@@ -83,9 +84,11 @@ public class CourseServiceImpl implements CourseService {
         course.setSalePrice(parameter.getSalePrice());
         course.setSaleEndDt(saleEndDt);
         course.setUdtDt(LocalDateTime.now());
-        
+        course.setFilename(parameter.getFilename());
+        course.setUrlFilename(parameter.getUrlFilename());
+
         courseRepository.save(course);
-        
+
         return true;
     }
     
