@@ -1,10 +1,12 @@
 package com.example.minicampus.member.service;
 
-import com.example.minicampus.admin.dto.MemberDto;
-import com.example.minicampus.admin.model.MemberParam;
-import com.example.minicampus.course.model.ServiceResult;
+import com.example.minicampus.member.dto.MemberDto;
+import com.example.minicampus.member.dto.MemberLoginHistoryDto;
+import com.example.minicampus.admin.member.model.MemberParam;
+import com.example.minicampus.admin.course.model.ServiceResult;
 import com.example.minicampus.member.model.MemberInput;
 import com.example.minicampus.member.model.ResetPasswordInput;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
@@ -58,4 +60,9 @@ public interface MemberService extends UserDetailsService {
      * 회원을 탈퇴시켜 주는 로직
      */
     ServiceResult withdraw(String userId, String password);
+
+    /**
+     * 해당 회원에 대한 로그인 기록 보여주기
+     */
+    List<MemberLoginHistoryDto> listLogIn(String userId, Pageable pageable);
 }

@@ -1,12 +1,13 @@
 package com.example.minicampus.member.controller;
 
-import com.example.minicampus.admin.dto.MemberDto;
-import com.example.minicampus.course.dto.TakeCourseDto;
-import com.example.minicampus.course.model.ServiceResult;
-import com.example.minicampus.course.service.TakeCourseService;
+import com.example.minicampus.member.dto.MemberDto;
+import com.example.minicampus.admin.course.dto.TakeCourseDto;
+import com.example.minicampus.admin.course.model.ServiceResult;
+import com.example.minicampus.admin.course.service.TakeCourseService;
 import com.example.minicampus.member.model.MemberInput;
 import com.example.minicampus.member.model.ResetPasswordInput;
 import com.example.minicampus.member.service.MemberService;
+import com.example.minicampus.util.RequestUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
+
+
 @RequiredArgsConstructor
 @Controller
 public class MemberController {
@@ -26,7 +29,10 @@ public class MemberController {
     private final TakeCourseService takeCourseService;
 
     @RequestMapping("/member/login")
-    public String login() {
+    public String login(HttpServletRequest request) {
+
+        String userAgent = RequestUtils.getUserAgent(request); // 접속 UserAgent
+        String clientIp = RequestUtils.getClientIP(request); // Client IP
 
         return "member/login";
     }

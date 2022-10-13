@@ -1,10 +1,13 @@
 package com.example.minicampus.member.service.impl;
 
-import com.example.minicampus.admin.dto.MemberDto;
-import com.example.minicampus.admin.mapper.MemberMapper;
-import com.example.minicampus.admin.model.MemberParam;
-import com.example.minicampus.component.MailComponents;
-import com.example.minicampus.course.model.ServiceResult;
+import com.example.minicampus.member.dto.MemberDto;
+import com.example.minicampus.member.dto.MemberLoginHistoryDto;
+import com.example.minicampus.member.entity.MemberLoginHistory;
+import com.example.minicampus.member.mapper.MemberMapper;
+import com.example.minicampus.admin.member.model.MemberParam;
+import com.example.minicampus.member.repository.MemberLoginHistoryRepository;
+import com.example.minicampus.common.model.component.MailComponents;
+import com.example.minicampus.admin.course.model.ServiceResult;
 import com.example.minicampus.member.entity.Member;
 import com.example.minicampus.member.entity.MemberCode;
 import com.example.minicampus.member.exception.MemberNotEmailAuthException;
@@ -15,6 +18,7 @@ import com.example.minicampus.member.repository.MemberRepository;
 import com.example.minicampus.member.service.MemberService;
 import com.example.minicampus.util.PasswordUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -35,6 +39,9 @@ import java.util.UUID;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
+
+    private final MemberLoginHistoryRepository loginHistoryRepository;
+
     private final MailComponents mailComponents;
 
     private final MemberMapper memberMapper;
@@ -265,7 +272,31 @@ public class MemberServiceImpl implements MemberService {
         member.setAddrDetail("");
         memberRepository.save(member);
 
-        return new ServiceResult(); // true
+        return new ServiceResult();
+    }
+
+    @Override
+    public List<MemberLoginHistoryDto> listLogIn(String userId, Pageable pageable) {
+
+        List<MemberLoginHistoryDto> historyDtoList = new ArrayList<>();
+        List<MemberLoginHistory> lists = loginHistoryRepository.findByUserId(userId, pageable);
+
+        if (!CollectionUtils.isEmpty(lists)) {
+            int i = 5;
+
+            for(MemberLoginHistory m: lists){
+                historyDtoList.add(MemberLoginHistoryDto.of(m));
+            }
+
+            for(MemberLoginHistoryDto x : historyDtoList) {
+
+                x.setSeq(i);
+                i--;
+
+            }
+        }
+
+        return historyDtoList;
     }
 
     @Override
@@ -300,3 +331,4 @@ public class MemberServiceImpl implements MemberService {
         return new User(member.getUserId(), member.getPassword(), grantedAuthorities);
     }
 }
+

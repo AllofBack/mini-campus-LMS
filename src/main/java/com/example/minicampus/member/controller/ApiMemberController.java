@@ -1,10 +1,10 @@
 package com.example.minicampus.member.controller;
 
 import com.example.minicampus.common.model.ResponseResult;
-import com.example.minicampus.course.dto.TakeCourseDto;
-import com.example.minicampus.course.model.ServiceResult;
-import com.example.minicampus.course.model.TakeCourseInput;
-import com.example.minicampus.course.service.TakeCourseService;
+import com.example.minicampus.admin.course.dto.TakeCourseDto;
+import com.example.minicampus.admin.course.model.ServiceResult;
+import com.example.minicampus.admin.course.model.TakeCourseInput;
+import com.example.minicampus.admin.course.service.TakeCourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;

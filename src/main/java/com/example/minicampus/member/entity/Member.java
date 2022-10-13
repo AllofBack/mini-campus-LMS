@@ -35,7 +35,10 @@ public class Member implements MemberCode{ // 테이블 의미
 
     private String userStatus;//이용가능한상태, 정지상태
 
+
     private String zipcode;
     private String addr;
     private String addrDetail;
+
+    private LocalDateTime lastLoginDt;//마지막 로그인 일자
 }

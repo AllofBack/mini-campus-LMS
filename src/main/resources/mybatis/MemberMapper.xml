@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.minicampus.admin.mapper.MemberMapper">
+<mapper namespace="com.example.minicampus.member.mapper.MemberMapper">
 
     <!-- namespace에 Mapper 매칭, id는 함수명 -->
 
@@ -39,7 +39,7 @@
         <include refid="selectListWhere"></include>
     </select>
 
-    <select id="selectList" resultType="com.example.minicampus.admin.dto.MemberDto">
+    <select id="selectList" resultType="com.example.minicampus.member.dto.MemberDto">
         select *
         from member
         where 1 = 1

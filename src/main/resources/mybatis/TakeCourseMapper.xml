@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.minicampus.course.mapper.TakeCourseMapper">
+<mapper namespace="com.example.minicampus.admin.course.mapper.TakeCourseMapper">
 
     <!-- namespace에 Mapper 매칭, id는 함수명 -->
 
@@ -23,7 +23,7 @@
         <include refid="selectListWhere"/>
     </select>
 
-    <select id="selectList" resultType="com.example.minicampus.course.dto.TakeCourseDto">
+    <select id="selectList" resultType="com.example.minicampus.admin.course.dto.TakeCourseDto">
         select tc.*
         , c.subject
         , m.user_name
@@ -37,7 +37,7 @@
         limit #{pageStart}, #{pageEnd}
     </select>
 
-    <select id="selectListMyCourse" resultType="com.example.minicampus.course.dto.TakeCourseDto">
+    <select id="selectListMyCourse" resultType="com.example.minicampus.admin.course.dto.TakeCourseDto">
         select tc.*
              , c.subject
         from take_course tc
