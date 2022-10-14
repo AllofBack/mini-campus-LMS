@@ -3,7 +3,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-👩‍💻 LMS 학습 관리 시스템
+👩‍💻 LMS 학습 관리 시스템 
+
+
+<br>
 
 ### 📁 Built With
 
@@ -18,7 +21,9 @@
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
     <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
 </div>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<br>
 
 ### 🪟 Project Structure
 ```bash
@@ -68,6 +73,7 @@
           ├─fragments
           └─member
 ```
+<br>
 
 <!-- ROADMAP -->
 ### 📋 Implementation Function
@@ -89,4 +95,3 @@
 - [x] Paging 처리 (MyBatis)
 - [ ] README.md 수정 (겪은 문제 + 프로젝트 설명)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
